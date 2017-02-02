@@ -6,6 +6,5 @@
 
     vagrant up
     vagrant ssh
-    sudo su -
     cd /workspace
     make

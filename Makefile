@@ -22,7 +22,7 @@ clean:
 	rm -f *.rpm
 
 $(PACKAGE_NAME):
-	wget -o $(PACKAGE_NAME) "$(DOWNLOAD)"
+	wget -O $(PACKAGE_NAME) "$(DOWNLOAD)"
 
 $(TARDIR): $(PACKAGE_NAME)
 	mkdir $(TARDIR)
@@ -40,7 +40,7 @@ rpm: $(TARDIR)
 		-a $(ARCHITECTURE) \
 		-C $(TARDIR) \
 		--prefix $(PREFIX) \
-		--rpm-init flannel.service \
+		--rpm-init flannel \
 		.
 		#--pleaserun-chdir /opt \
 		#--pleaserun-name $(PACKAGE_NAME) /opt/$(PACKAGE_NAME)
