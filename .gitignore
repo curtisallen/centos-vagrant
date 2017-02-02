@@ -1,2 +1,4 @@
 *.rpm
 flanneld-amd64*
+.vagrant
+flanneld
