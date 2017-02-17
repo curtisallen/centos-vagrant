@@ -25,10 +25,11 @@ $(PACKAGE_NAME):
 	wget -O $(PACKAGE_NAME) "$(DOWNLOAD)"
 
 $(TARDIR): $(PACKAGE_NAME)
-	mkdir $(TARDIR)
+	mkdir -p $(TARDIR) $(TARDIR)$(PREFIX)/
 	chmod +x $(PACKAGE_NAME)
-	cp $(PACKAGE_NAME) $(TARDIR)/
-	#cp $(PACKAGE_NAME) /opt/
+	cp $(PACKAGE_NAME) $(TARDIR)$(PREFIX)/
+	cp -r etc $(TARDIR)/
+	cp -r lib $(TARDIR)/
 
 .PHONY: rpm
 rpm: $(TARDIR)
@@ -39,11 +40,4 @@ rpm: $(TARDIR)
 		-n $(PACKAGE_NAME) \
 		-a $(ARCHITECTURE) \
 		-C $(TARDIR) \
-		--prefix $(PREFIX) \
-		--rpm-init flannel \
 		.
-		#--pleaserun-chdir /opt \
-		#--pleaserun-name $(PACKAGE_NAME) /opt/$(PACKAGE_NAME)
-		#-C $(TARDIR) \
-		#--prefix $(PREFIX) .
-		#--rpm-init flannel.service \
